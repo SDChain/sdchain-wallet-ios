@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SDChainWallet.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>C557BEC17B841DA283DC757E7D78CE698EECFC9E</string>
+				<key>dateExpires</key>
+				<string>2019/5/8</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>54Y3FD83HT.com.HengWei.SDChainWallet</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>54Y3FD83HT</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>54Y3FD83HT.com.HengWei.SDChainWallet</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>SDChainWallet.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>58abfb76-2dba-45dd-a6f9-57e277519f68</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: com.HengWei.SDChainWallet</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>54Y3FD83HT</string>
+				<key>name</key>
+				<string>Wuxi Mei Ju Network Technology Co., Ltd.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletAdditionSelectScene">
+            <connections>
+                <outlet property="createButton" destination="1Pc-SB-qbS" id="pW2-KQ-Q72"/>
+                <outlet property="leadInButton" destination="Kp1-9E-Rgh" id="gMX-4J-eac"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEM-tg-4fV">
+                    <rect key="frame" x="0.0" y="30" width="375" height="230"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pc-SB-qbS">
+                            <rect key="frame" x="40" y="35" width="295" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="2Or-LM-1vt"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="createbuttonAction:" destination="-1" eventType="touchUpInside" id="wWD-k2-OoE"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp1-9E-Rgh">
+                            <rect key="frame" x="40" y="120" width="295" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="r8z-vH-r22"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="leadinButtonAction:" destination="-1" eventType="touchUpInside" id="kbd-ly-VjJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Kp1-9E-Rgh" firstAttribute="height" secondItem="1Pc-SB-qbS" secondAttribute="height" id="I15-rW-aNR"/>
+                        <constraint firstItem="1Pc-SB-qbS" firstAttribute="top" secondItem="SEM-tg-4fV" secondAttribute="top" constant="35" id="J6R-eR-Prd"/>
+                        <constraint firstItem="Kp1-9E-Rgh" firstAttribute="leading" secondItem="1Pc-SB-qbS" secondAttribute="leading" id="QaA-ND-rKc"/>
+                        <constraint firstItem="Kp1-9E-Rgh" firstAttribute="top" secondItem="1Pc-SB-qbS" secondAttribute="bottom" constant="45" id="Wkn-5P-4tz"/>
+                        <constraint firstItem="1Pc-SB-qbS" firstAttribute="leading" secondItem="SEM-tg-4fV" secondAttribute="leading" constant="40" id="XzN-Op-TQ8"/>
+                        <constraint firstAttribute="trailing" secondItem="1Pc-SB-qbS" secondAttribute="trailing" constant="40" id="ZJv-i4-Vpj"/>
+                        <constraint firstAttribute="height" constant="230" id="pdy-Co-sS6"/>
+                        <constraint firstItem="Kp1-9E-Rgh" firstAttribute="trailing" secondItem="1Pc-SB-qbS" secondAttribute="trailing" id="sr1-Ke-eXR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SEM-tg-4fV" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ggF-AJ-soH"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="SEM-tg-4fV" secondAttribute="trailing" id="r0c-ww-9GX"/>
+                <constraint firstItem="SEM-tg-4fV" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="10" id="ydU-Dg-WeM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+</document>
