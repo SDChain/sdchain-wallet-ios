@@ -13,6 +13,7 @@
 @property(nonatomic,strong)NSString *counterparty;
 @property(nonatomic,strong)NSString *currency;
 @property(nonatomic,strong)NSString *value;
+@property(nonatomic,strong)NSString *pic;
 
 -(void)initWithDict:(NSDictionary *)dict;
 +(BalanceModel *)modelWithDict:(NSDictionary *)dict;

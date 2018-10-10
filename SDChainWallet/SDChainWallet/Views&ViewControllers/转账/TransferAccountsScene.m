@@ -109,7 +109,6 @@
 -(void)refreshSceneWithModel:(BalanceModel *)model{
     NSString *keyong = NSLocalizedStringFromTable(@"可用", @"guojihua", nil);
     NSString *dongjie = NSLocalizedStringFromTable(@"冻结", @"guojihua", nil);
-    NSString *qingxuanze = NSLocalizedStringFromTable(@"请选择", @"guojihua", nil);
     if(self.currentModel == nil){
         [self.naviButton setTitle:@"SDA \U0000e68B" forState:UIControlStateNormal];
         self.inputWarnLabel.text = [NSString stringWithFormat:@"%@：0.000000，%@：0.000000",keyong,dongjie];
@@ -162,7 +161,7 @@
     [responseArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         BalanceModel *model = [BalanceModel modelWithDict:obj];
         [arr addObject:model];
-        if([model.currency isEqualToString:@"SDA"]){
+        if(!self.currentModel && [model.currency isEqualToString:@"SDA"]){
             self.currentModel = model;
         }
     }];
@@ -180,35 +179,31 @@
         SYSTEM_SET_(responseObject[@"reserveBase"], FREEZE);
         [self refreshSceneWithDict:SYSTEM_GET_(BALANCES)];
         [self refreshSceneWithModel:self.currentModel];
-        
-        
     } reLogin:^(void){
         [GlobalMethod loginOutAction];
     } warn:^(NSString *content) {
         self.balanceArr = @[];
-        self.currentModel = [BalanceModel modelWithDict:@{@"counterparty":@"",
-                                                          @"currency":@"SDA",
-                                                          @"value":@"0",
-                                                          @"pic":@"",
-                                                          }];
+//        self.currentModel = [BalanceModel modelWithDict:@{@"counterparty":@"",
+//                                                          @"currency":@"SDA",
+//                                                          @"value":@"0",
+//                                                          @"pic":@"",
+//                                                          }];
         self.inputWarnLabel.text = [NSString stringWithFormat:@"%@：0.000000，%@：0.000000",keyong,dongjie];
     } error:^(NSString *content) {
-        
         self.balanceArr = @[];
-        self.currentModel = [BalanceModel modelWithDict:@{@"counterparty":@"",
-                                                          @"currency":@"SDA",
-                                                          @"value":@"0",
-                                                          @"pic":@"",
-                                                          }];
+//        self.currentModel = [BalanceModel modelWithDict:@{@"counterparty":@"",
+//                                                          @"currency":@"SDA",
+//                                                          @"value":@"0",
+//                                                          @"pic":@"",
+//                                                          }];
         self.inputWarnLabel.text = [NSString stringWithFormat:@"%@：0.000000，%@：0.000000",keyong,dongjie];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
         self.balanceArr = @[];
-        self.currentModel = [BalanceModel modelWithDict:@{@"counterparty":@"",
-                                                          @"currency":@"SDA",
-                                                          @"value":@"0",
-                                                          @"pic":@"",
-                                                          }];
+//        self.currentModel = [BalanceModel modelWithDict:@{@"counterparty":@"",
+//                                                          @"currency":@"SDA",
+//                                                          @"value":@"0",
+//                                                          @"pic":@"",
+//                                                          }];
         self.inputWarnLabel.text = [NSString stringWithFormat:@"%@：0.000000，%@：0.000000",keyong,dongjie];
     }];
 }

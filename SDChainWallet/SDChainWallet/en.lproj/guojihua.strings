@@ -195,5 +195,14 @@
 "授信成功"="Credit success";
 "(首个默认钱包地址的支付密码)" = "(The first default wallet address payment password)";
 "请获取验证码" = "Please get verification code";
-
+"授信_注" = "Enter the password for credit before receiving the transfer.\nThe wallet does not endorse any secondary asset issuer.";
+"授信_alert" = "Is credit granted to ";
+"取消授信_alert" = "Whether to cancel the credit ";
+"取消" = "Cancel";
+"确定" = "Confirm";
+"通过手机修改" = "Modify by phone";
+"通过邮箱修改" = "Modify by mailbox";
+"请先绑定手机" = "Please bind the phone first";
+"请先绑定邮箱" = "Please bind the mailbox first";
+"选择修改方式" = "Choose how to modify";
 

@@ -15,19 +15,19 @@
 
 -(void)setupCellWithModel:(TrustListModel *)model{
     [self.iocnImageView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"assets_icon"]];
-    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",model.limit,model.currency];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@",model.currency];
     self.accountLabel.text = [NSString stringWithFormat:@"%@",model.counterparty];
-    UIImage *statusImage = [model.trusted isEqualToString:@"1"] ? [UIImage imageNamed:@"shouxin_trusted"]:[UIImage imageNamed:@"shouxin_untrust"];
-    self.statusImageView.image = statusImage;
+    UIColor *statusColor = [model.trusted isEqualToString:@"1"] ? RGB(255, 93, 67):NAVIBAR_COLOR;
+    self.statusLabel.backgroundColor = statusColor;
+    self.statusLabel.text = [model.trusted isEqualToString:@"1"] ? @"取消授信":@"授信";
+    self.statusLabel.layer.cornerRadius = 5;
+    self.statusLabel.layer.masksToBounds = YES;
 }
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(kWidth(25));
-        make.centerY.equalTo(self.mas_centerY);
-        make.right.mas_equalTo(kWidth(15));
-    }];
+
     // Initialization code
 }
 

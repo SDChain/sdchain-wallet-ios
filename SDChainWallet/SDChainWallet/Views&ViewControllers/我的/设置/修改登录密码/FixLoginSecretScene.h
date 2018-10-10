@@ -16,5 +16,6 @@ typedef NS_ENUM(NSInteger,FixLoginAccountType) {
 @interface FixLoginSecretScene : BaseViewController
 
 @property(nonatomic,assign)FixLoginAccountType type;
+@property(nonatomic,strong)NSString *accountStr;
 
 @end

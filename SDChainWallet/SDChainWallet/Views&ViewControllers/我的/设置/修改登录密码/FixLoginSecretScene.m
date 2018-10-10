@@ -183,7 +183,7 @@
 
 -(void)fixLoginSecretSendCodeAction{
     if(self.type == typeLoginMobile){
-        [HTTPRequestManager FixLoginGetVerifyingCodeWithMobile:SYSTEM_GET_(USER_NAME)  mark:@"1" showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HTTPRequestManager FixLoginGetVerifyingCodeWithMobile:self.accountStr  mark:@"1" showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
             self.smsId = responseObject[@"smsId"];
             [GlobalMethod startTime:59 sendAuthCodeBtn:self.sendCodeButton];
             NSString *title = NSLocalizedStringFromTable(@"验证码已发送", @"guojihua", nil);
@@ -197,7 +197,7 @@
         }];
     }
     else{
-        [HTTPRequestManager GetVerifyingCodeWithEmail:SYSTEM_GET_(USER_NAME) mark:@"1" showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HTTPRequestManager GetVerifyingCodeWithEmail:self.accountStr mark:@"1" showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
             [GlobalMethod startTime:59 sendAuthCodeBtn:self.sendCodeButton];
             self.smsId = responseObject[@"smsId"];
             NSString *title = NSLocalizedStringFromTable(@"验证码已发送", @"guojihua", nil);
@@ -378,13 +378,14 @@
             NSString *title = NSLocalizedStringFromTable(@"邮箱", @"guojihua", nil);
             _acountTextField.placeholder = title;
         }
-        NSString *userName = SYSTEM_GET_(USER_NAME);
-        if([userName containsString:@"@"]){
-            _acountTextField.text = SYSTEM_GET_(EMAIL);
-        }
-        else{
-            _acountTextField.text = SYSTEM_GET_(PHONE);
-        }
+//        NSString *userName = SYSTEM_GET_(USER_NAME);
+//        if([userName containsString:@"@"]){
+//            _acountTextField.text = SYSTEM_GET_(EMAIL);
+//        }
+//        else{
+//            _acountTextField.text = SYSTEM_GET_(PHONE);
+//        }
+        _acountTextField.text = self.accountStr;
     }
     return _acountTextField;
 }

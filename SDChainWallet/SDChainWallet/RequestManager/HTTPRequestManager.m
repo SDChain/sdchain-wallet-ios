@@ -57,7 +57,7 @@ DEF_SINGLETON(HTTPRequestManager)
                                 @"languageType":languageType,
                                 @"area":dict[@"code"],
                                 @"time":[GlobalMethod getCurrentTimeTemp],
-                                @"version":@"7"
+                                @"version":@"8"
                                 };
     if(showProgress){
         [manager showProgressHUD];
@@ -1875,6 +1875,7 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
 //授信
 +(void)trustlineWithUserAccountId:(NSString *)userAccountId walletPassword:(NSString *)walletPassword limit:(NSString *)limit currency:(NSString *)currency counterparty:(NSString *)counterparty showProgress:(BOOL)showProgress success:(void(^)(NSURLSessionDataTask * task, id responseObject))success reLogin:(void(^)(void))reLogin warn:(void(^)(NSString * content))warn error:(void(^)(NSString * content))error failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure{
     HTTPRequestManager *manager = [HTTPRequestManager sharedInstance];
+    manager.httpSessionManager.requestSerializer.timeoutInterval = 60000;
     NSString *urlStr = [BASE_URL_NORMAL stringByAppendingString:@"payment/trustline"];
     NSString *languageType = [GlobalMethod getCurrentLanguage];
     NSDictionary *parameter = @{@"userId":SYSTEM_GET_(USER_ID),
@@ -1890,6 +1891,7 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
         [manager showProgressHUD];
     }
     [manager.httpSessionManager POST:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        manager.httpSessionManager.requestSerializer.timeoutInterval = 20000;
         if (showProgress) {
             [manager hideProgressHUD];
         }
@@ -1897,7 +1899,7 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
         NSString *statusStr = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
         if([statusStr isEqualToString:@"S00001"]){
             if(success){
-                success(task,responseObject[@"data"]);
+                success(task,responseObject[@"message"]);
             }
         }
         else if ([statusStr isEqualToString:@"E00002"]){
@@ -1911,6 +1913,7 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        manager.httpSessionManager.requestSerializer.timeoutInterval = 20000;
         if (showProgress) {
             [manager hideProgressHUD];
         }
@@ -1927,11 +1930,13 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
 //取消授信
 +(void)cancelTrustlineWithWalletPassword:(NSString *)walletPassword currency:(NSString *)currency counterparty:(NSString *)counterparty showProgress:(BOOL)showProgress success:(void(^)(NSURLSessionDataTask * task, id responseObject))success reLogin:(void(^)(void))reLogin warn:(void(^)(NSString * content))warn error:(void(^)(NSString * content))error failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure{
     HTTPRequestManager *manager = [HTTPRequestManager sharedInstance];
-    NSString *urlStr = [BASE_URL_NORMAL stringByAppendingString:@"payment/trustline"];
+    manager.httpSessionManager.requestSerializer.timeoutInterval = 60000;
+    NSString *urlStr = [BASE_URL_NORMAL stringByAppendingString:@"payment/cancelTrustline"];
     NSString *languageType = [GlobalMethod getCurrentLanguage];
     NSDictionary *parameter = @{@"userId":SYSTEM_GET_(USER_ID),
                                 @"apptoken":SYSTEM_GET_(APPTOKEN),
                                 @"userAccountId":SYSTEM_GET_(USERACCOUNTID),
+                                @"walletPassword":walletPassword,
                                 @"languageType":languageType,
                                 @"limit":@"0",
                                 @"currency":currency,
@@ -1941,6 +1946,7 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
         [manager showProgressHUD];
     }
     [manager.httpSessionManager POST:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        manager.httpSessionManager.requestSerializer.timeoutInterval = 20000;
         if (showProgress) {
             [manager hideProgressHUD];
         }
@@ -1948,7 +1954,7 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
         NSString *statusStr = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
         if([statusStr isEqualToString:@"S00001"]){
             if(success){
-                success(task,responseObject[@"data"]);
+                success(task,responseObject[@"message"]);
             }
         }
         else if ([statusStr isEqualToString:@"E00002"]){
@@ -1962,6 +1968,7 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        manager.httpSessionManager.requestSerializer.timeoutInterval = 20000;
         if (showProgress) {
             [manager hideProgressHUD];
         }
@@ -2021,6 +2028,47 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
             [manager.delegate httpRequestManagerDidRequestFailureWithError:error];
         }
         
+    }];
+}
+
+//显示手动授信
++(void)funcControllerShowProgress:(BOOL)showProgress success:(void(^)(NSURLSessionDataTask * task, id responseObject))success reLogin:(void(^)(void))reLogin warn:(void(^)(NSString * content))warn error:(void(^)(NSString * content))error failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure{
+    HTTPRequestManager *manager = [HTTPRequestManager sharedInstance];
+    NSString *urlStr = [BASE_URL_NORMAL stringByAppendingString:@"version/funcController"];
+    if(showProgress){
+        [manager showProgressHUD];
+    }
+    [manager.httpSessionManager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (showProgress) {
+            [manager hideProgressHUD];
+        }
+        [manager logWithTask:task responseObject:responseObject];
+        NSString *statusStr = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if([statusStr isEqualToString:@"S00001"]){
+            if(success){
+                success(task,responseObject[@"data"]);
+            }
+        }
+        else if ([statusStr isEqualToString:@"E00002"]){
+            if(reLogin){
+                reLogin();
+            }
+        }
+        else{
+            if(warn){
+                warn(responseObject[@"message"]);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (showProgress) {
+            [manager hideProgressHUD];
+        }
+        [manager logWithTask:task error:error];
+        if (failure) {
+            failure(task, error);
+        } else if (manager.delegate && [manager.delegate respondsToSelector:@selector(httpRequestManagerDidRequestFailureWithError:)]) {
+            [manager.delegate httpRequestManagerDidRequestFailureWithError:error];
+        }
     }];
 }
 

@@ -138,7 +138,7 @@
 
 -(void)fuzhiWalletAddressAction{
     UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
-    if(self.model.account == nil){
+    if(self.friendAccount != nil){
         pasteboard.string = self.friendAccount;
     }else{
         pasteboard.string = self.model.account;

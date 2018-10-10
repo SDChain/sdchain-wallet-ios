@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iocnImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIButton *iconButton;
 
 -(void)setupCellWithModel:(TrustListModel *)model;
 

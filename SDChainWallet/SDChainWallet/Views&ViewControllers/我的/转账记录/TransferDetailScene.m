@@ -82,8 +82,17 @@
         NSDictionary *paymentDict = responseObject[@"payment"];
         self.string1 = paymentDict[@"source_account"];
         self.string2 = paymentDict[@"destination_account"];
-        self.string3 = paymentDict[@"amount"][@"value"];
-        self.string4 = paymentDict[@"fee"];
+        if([paymentDict[@"amount"][@"value"] isEqual:[NSNull null]]){
+            self.string3 = @"";
+        }else{
+            self.string3 = paymentDict[@"amount"][@"value"];
+        }
+        if([paymentDict[@"fee"] isEqual:[NSNull null]]){
+            self.string4 = @"";
+        }else{
+            self.string4 = paymentDict[@"fee"];
+        }
+
 //        self.string5 = [GlobalMethod getTimeWithdate:paymentDict[@"date"]];
         self.string6 = paymentDict[@"hash"];
         self.string7 = paymentDict[@"ledger"];

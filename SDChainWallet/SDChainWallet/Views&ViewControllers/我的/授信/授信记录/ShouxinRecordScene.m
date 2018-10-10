@@ -27,6 +27,7 @@
     [super viewDidLoad];
     [self setupView];
     [self setTitleViewWithTitle:NSLocalizedStringFromTable(@"授信记录", @"guojihua", nil)];
+    self.marker = @"";
     self.dataArr = [NSMutableArray array];
     [self.tableView.mj_header beginRefreshing];
     // Do any additional setup after loading the view.
@@ -89,7 +90,7 @@
     return kHeight(10);
 }
 
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section{
+-(CGFloat)tableView:(UITableView *)tableView HeightForFooterInSection:(NSInteger)section{
     return 0.001;
 }
 
@@ -118,7 +119,6 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.separatorColor = [UIColor darkGrayColor];
         [_tableView registerNib:[UINib nibWithNibName:@"ShouxinRecordCell" bundle:nil] forCellReuseIdentifier:@"ShouxinRecordCell"];
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 0.001)];
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 0.001)];

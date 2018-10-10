@@ -17,12 +17,15 @@
 @interface ShouXinScene ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSourceArr;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @end
 
 @implementation ShouXinScene
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     [self setupNavi];
     [self setupView];
     [self requestTrustList];
@@ -30,6 +33,8 @@
 }
 
 -(void)setupView{
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.warningLabel.text = NSLocalizedStringFromTable(@"授信_注", @"guojihua", nil);
     [self.tableView registerNib:[UINib nibWithNibName:@"ShouxinCell" bundle:nil] forCellReuseIdentifier:@"ShouxinCell"];
 }
 
@@ -53,13 +58,13 @@
         [self.tableView reloadData];
         
     } reLogin:^{
-        
+        [GlobalMethod loginOutAction];
     } warn:^(NSString *content) {
-        
+        [self presentAlertWithTitle:content message:@"" dismissAfterDelay:1.5 completion:nil];
     } error:^(NSString *content) {
-        
+        [self presentAlertWithTitle:content message:@"" dismissAfterDelay:1.5 completion:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [self presentAlertWithTitle:@"请求失败" message:@"" dismissAfterDelay:1.5 completion:nil];
     }];
 }
 
@@ -80,15 +85,16 @@
 
 -(void)requestCancleTrustActionWithPassword:(NSString *)password currency:(NSString *)currency counterparty:(NSString *)counterparty{
     [HTTPRequestManager cancelTrustlineWithWalletPassword:password currency:currency counterparty:counterparty showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        [self presentAlertWithTitle:NSLocalizedStringFromTable(@"取消成功", @"guojihua", nil) message:@"" dismissAfterDelay:1.5 completion:nil];
+        [self requestTrustList];
     } reLogin:^{
-        
+        [GlobalMethod loginOutAction];
     } warn:^(NSString *content) {
-        
+        [self presentAlertWithTitle:content message:@"" dismissAfterDelay:1.5 completion:nil];
     } error:^(NSString *content) {
-        
+        [self presentAlertWithTitle:content message:@"" dismissAfterDelay:1.5 completion:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [self presentAlertWithTitle:NSLocalizedStringFromTable(@"请求失败", @"guojihua", nil) message:@"" dismissAfterDelay:1.5 completion:nil];
     }];
 }
 
@@ -140,19 +146,41 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TrustListModel *model=self.dataSourceArr[indexPath.row];
-    
-    if([model.trusted isEqualToString:@"0"]){
-        [self shoudongshouxinActionWithModel:model];
-    }
-    
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShouxinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShouxinCell" forIndexPath:indexPath];
+    cell.iconButton.tag = indexPath.row;
+    [cell.iconButton addTarget:self action:@selector(shouxinIconButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell setupCellWithModel:self.dataSourceArr[indexPath.row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(void)shouxinIconButtonAction:(UIButton *)sender{
+        TrustListModel *model=self.dataSourceArr[sender.tag];
+    if([model.trusted isEqualToString:@"0"]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@ %@?",NSLocalizedStringFromTable(@"授信_alert", @"guojihua", nil),model.currency] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self shoudongshouxinActionWithModel:model];
+        }];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alert addAction:confirmAction];
+        [alert addAction:cancleAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@ %@?",NSLocalizedStringFromTable(@"取消授信_alert", @"guojihua", nil),model.currency] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self cancleShouxinActionWithModel:model];
+        }];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alert addAction:confirmAction];
+        [alert addAction:cancleAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

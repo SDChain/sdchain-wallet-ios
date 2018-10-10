@@ -40,6 +40,8 @@
 
 +(NSString *)htcTimeToLocationStr:(NSString*)strM;
 
++ (NSString *)getLocalDateFormateUTCDate:(NSString *)utcDate;
+
 //+ (NSString *)getUUID;
 
 + (UIImage *)getImageWithBase64StringWithString:(NSString *)string;

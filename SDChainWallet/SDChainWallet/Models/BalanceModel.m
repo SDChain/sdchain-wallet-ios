@@ -14,6 +14,7 @@
     self.counterparty = dict[@"counterparty"];
     self.currency = dict[@"currency"];
     self.value = dict[@"value"];
+    self.pic = dict[@"pic"];
 }
 
 +(BalanceModel *)modelWithDict:(NSDictionary *)dict{

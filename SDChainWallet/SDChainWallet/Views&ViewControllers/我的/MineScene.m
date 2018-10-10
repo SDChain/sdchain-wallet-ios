@@ -11,7 +11,7 @@
 #import "PersonalSettingCell.h"
 #import "Masonry.h"
 #import "PersonalScene.h"
-
+#import "HTTPRequestManager.h"
 #import "MineSettingScene.h"
 #import "ChooseFriendScene.h"
 #import "MineWalletAddressScene.h"
@@ -23,6 +23,7 @@
 @interface MineScene ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)NSString *trustLine;
 
 @end
 
@@ -39,16 +40,35 @@
 }
 
 -(void)setupView{
+    self.trustLine = @"0";
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.tableView.superview);
     }];
-    
+}
+
+-(void)requestShouxin{
+    [HTTPRequestManager funcControllerShowProgress:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+        self.trustLine = responseObject[@"trustline"];
+        [self.tableView reloadData];
+    } reLogin:^{
+        self.trustLine = @"0";
+        [self.tableView reloadData];
+    } warn:^(NSString *content) {
+        self.trustLine = @"0";
+        [self.tableView reloadData];
+    } error:^(NSString *content) {
+        self.trustLine = @"0";
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        self.trustLine = @"0";
+        [self.tableView reloadData];
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [self requestShouxin];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +87,7 @@
         return 1;
     }
     else if (section == 1){
-        return 2;
+        return [self.trustLine isEqualToString:@"0"]?3:2;
     }
     else if (section == 2){
         return 4;

@@ -22,9 +22,8 @@
 
 -(void)setupCellWithModel:(ShouxinRecordModel *)model{
     NSLog(@"%@",model.pic);
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.pic]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"assets_icon_default"]];
     self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",model.value,model.code];
-    self.timeLabel.text = [GlobalMethod htcTimeToLocationStr:model.date];
     self.timeLabel.text = model.date;
     self.accountLabel.text = model.issuer;
 }
@@ -48,7 +47,7 @@
 
 -(UILabel *)timeLabel{
     if(!_timeLabel){
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH-kWidth(100), CGRectGetMidY(self.titleLabel.frame), kWidth(90), kHeight(18))];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH-kWidth(150), kHeight(3), kWidth(140), kHeight(18))];
         _timeLabel.font = [UIFont systemFontOfSize:12];
         _timeLabel.textAlignment = NSTextAlignmentRight;
     }

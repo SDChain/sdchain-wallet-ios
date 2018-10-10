@@ -52,8 +52,11 @@
 
 #pragma mark - tabbar delegate
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSNotification *notification = [NSNotification notificationWithName:@"qingkong" object:nil];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    if(![item.title isEqualToString:NSLocalizedStringFromTable(@"资产", @"guojihua", nil)]){
+        NSNotification *notification = [NSNotification notificationWithName:@"qingkong" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }
+
 }
 
 #pragma mark - Getter

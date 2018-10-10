@@ -118,14 +118,14 @@ CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];\    CGRe
 #define SYSTEM_SET_(value,key) [[NSUserDefaults standardUserDefaults] setObject:value forKey:key]
 #define SYSTEM_GET_(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
 
-#define BASE_URL_NORMAL @"https://app-service.sdchain.io/resSDnWalt/"    //正式
+//#define BASE_URL_NORMAL @"https://app-service.sdchain.io/resSDnWalt/"    //正式
 //#define BASE_URL_NORMAL @"http://hwelltech.picp.net:2480/sdchainWallet-webservice/resSDnWalt/"     //测试
-//#define BASE_URL_NORMAL @"http://47.91.253.63:3000/sdchainWallet-webservice/resSDnWalt/"     //尹超测试
+#define BASE_URL_NORMAL @"http://47.91.253.63:3000/sdchainWallet-webservice/resSDnWalt/"     //尹超测试
 
 
-#define ABOUT_URL @"https://app-service.sdchain.io/"     //正式
+//#define ABOUT_URL @"https://app-service.sdchain.io/"     //正式
 //#define ABOUT_URL @"http://hwelltech.picp.net:2480/sdchainWallet-webservice/"     //测试
-//#define ABOUT_URL @"http://47.91.253.63:3000/sdchainWallet-webservice/"     //测试
+#define ABOUT_URL @"http://47.91.253.63:3000/sdchainWallet-webservice/"     //测试
 
 
 
