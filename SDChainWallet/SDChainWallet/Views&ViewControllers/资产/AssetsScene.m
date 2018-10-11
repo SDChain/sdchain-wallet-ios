@@ -232,6 +232,11 @@
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     } reLogin:^(void){
+        NSDictionary *dict = @{@"counterparty":@"",
+                               @"currency":@"SDA",
+                               @"value":@"0",
+                               @"pic":@""};
+        SYSTEM_SET_(@[dict], BALANCES);
         [GlobalMethod loginOutAction];
     } warn:^(NSString *content) {
         NSString *title = NSLocalizedStringFromTable(@"未激活", @"guojihua", nil);
@@ -282,7 +287,7 @@
 
 //循环获取资产
 -(void)requestBalanceCricle{
-            NSString *title = NSLocalizedStringFromTable(@"激活中", @"guojihua", nil);
+    NSString *title = NSLocalizedStringFromTable(@"激活中", @"guojihua", nil);
     self.shimLabel.text = title;
     [HTTPRequestManager getBalanceWithAccount:self.currentWallet.account userId:SYSTEM_GET_(USER_ID) appToken:SYSTEM_GET_(APPTOKEN) showProgress:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         self.isActive = YES;
@@ -413,8 +418,8 @@
     }else{
         [HTTPRequestManager walletActiveActionWithUserAccountId:self.currentWallet.userAccountId showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
             [self performSelector:@selector(requestBalance) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
-            NSString *yijihuo = NSLocalizedStringFromTable(@"已激活", @"guojihua", nil);
-            [self presentAlertWithTitle:yijihuo message:@"" dismissAfterDelay:1.5 completion:nil];
+//            NSString *yijihuo = NSLocalizedStringFromTable(@"已激活", @"guojihua", nil);
+//            [self presentAlertWithTitle:yijihuo message:@"" dismissAfterDelay:1.5 completion:nil];
             self.isActive = YES;
             [self requestBalanceCricle];
         } reLogin:^{

@@ -120,6 +120,7 @@
             self.inputWarnLabel.text = [NSString stringWithFormat:@"%@：0.000000，%@：%.6f",keyong,dongjie,[self.currentModel.value doubleValue]];
         }
     }
+    [self checkRestAmount];
 }
 
 -(void)setupView{
@@ -324,7 +325,9 @@
     else{
         [self transActionEnableWithBool:NO];
     }
-
+    if(self.amountTextField.text.length == 0){
+        self.lowBalanceLabel.hidden = YES;
+    }
 }
 
 #pragma mark - UITextField Delegate

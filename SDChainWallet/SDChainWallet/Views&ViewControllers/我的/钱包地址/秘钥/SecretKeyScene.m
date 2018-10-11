@@ -34,6 +34,8 @@
     [super viewDidLoad];
     NSString *title = NSLocalizedStringFromTable(@"密钥", @"guojihua", nil);
     [self setTitleViewWithTitle:title];
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     [self setupView];
     // Do any additional setup after loading the view.
 }

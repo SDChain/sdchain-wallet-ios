@@ -59,7 +59,8 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:NSLocalizedStringFromTable(@"选择修改方式", @"guojihua", nil) preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *mobileAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"通过手机修改", @"guojihua", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if([str containsString:@"@"]){
-                if(SYSTEM_GET_(PHONE)){
+                NSString *phoneStr = [NSString stringWithFormat:@"%@",SYSTEM_GET_(PHONE)];
+                if(phoneStr.length>0){
                     FixLoginSecretScene *scene = [[FixLoginSecretScene alloc] init];
                     scene.type = typeLoginMobile;
                     scene.accountStr = SYSTEM_GET_(PHONE);
@@ -82,7 +83,8 @@
                 scene.accountStr = SYSTEM_GET_(USER_NAME);
                 [self.navigationController pushViewController:scene animated:YES];
             }else{
-                if(SYSTEM_GET_(EMAIL)){
+                NSString *emailStr = [NSString stringWithFormat:@"%@",SYSTEM_GET_(EMAIL)];
+                if(emailStr.length>0){
                     FixLoginSecretScene *scene = [[FixLoginSecretScene alloc] init];
                     scene.type = typeLoginEmail;
                     scene.accountStr = SYSTEM_GET_(EMAIL);

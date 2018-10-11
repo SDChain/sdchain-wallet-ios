@@ -235,16 +235,20 @@
     if (range.length == 1 && string.length == 0) {
         return YES;
     }else if(textField == self.textField1){
-//        NSCharacterSet*cs1;
-//        NSCharacterSet*cs2;
-//
-//        cs1 = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS] invertedSet];
-//        cs2 = [[NSCharacterSet characterSetWithCharactersInString:ENGLISH] invertedSet];
-//
-//        NSString*filtered1 = [[string componentsSeparatedByCharactersInSet:cs1] componentsJoinedByString:@""];
-//        NSString*filtered2 = [[string componentsSeparatedByCharactersInSet:cs2] componentsJoinedByString:@""];
-//
-//        return [string isEqualToString:filtered1] || [string isEqualToString:filtered2];
+        NSCharacterSet*cs1;
+        NSCharacterSet*cs2;
+
+        cs1 = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS] invertedSet];
+        cs2 = [[NSCharacterSet characterSetWithCharactersInString:ENGLISH] invertedSet];
+
+        NSString*filtered1 = [[string componentsSeparatedByCharactersInSet:cs1] componentsJoinedByString:@""];
+        NSString*filtered2 = [[string componentsSeparatedByCharactersInSet:cs2] componentsJoinedByString:@""];
+
+        if(string.length > 1){
+            return YES;
+        }else{
+            return [string isEqualToString:filtered1] || [string isEqualToString:filtered2];
+        }
         return YES;
     }else{
         if(textField.text.length >= 6){

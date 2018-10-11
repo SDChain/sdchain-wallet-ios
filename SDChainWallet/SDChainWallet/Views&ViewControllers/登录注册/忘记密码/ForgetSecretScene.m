@@ -410,7 +410,7 @@
             }];
         }
     }else{
-        [self presentAlertWithTitle:@"" message:NSLocalizedStringFromTable(@"请获取验证码", @"guojihua", nil) dismissAfterDelay:1.5 completion:nil];
+        [self presentAlertWithTitle:NSLocalizedStringFromTable(@"请获取验证码", @"guojihua", nil) message:@"" dismissAfterDelay:1.5 completion:nil];
     }
 
 }
@@ -448,8 +448,13 @@
         
         NSString*filtered1 = [[string componentsSeparatedByCharactersInSet:cs1] componentsJoinedByString:@""];
         NSString*filtered2 = [[string componentsSeparatedByCharactersInSet:cs2] componentsJoinedByString:@""];
+        if(string.length > 1){
+            return YES;
+        }else{
+            return [string isEqualToString:filtered1] || [string isEqualToString:filtered2];
+        }
         
-        return [string isEqualToString:filtered1] || [string isEqualToString:filtered2];
+
     }else if (textField == self.codeTextField){
         //这里的if时候为了获取删除操作,如果没有次if会造成当达到字数限制后删除键也不能使用的后果.
         if (range.length == 1 && string.length == 0) {
