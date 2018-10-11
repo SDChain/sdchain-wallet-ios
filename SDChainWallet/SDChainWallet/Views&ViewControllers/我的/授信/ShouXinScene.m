@@ -70,8 +70,10 @@
 
 -(void)requestShouxinWithPassword:(NSString *)password amount:(NSString *)amount currency:(NSString *)currency counterparty:(NSString *)counterparty{
     [HTTPRequestManager trustlineWithUserAccountId:SYSTEM_GET_(USERACCOUNTID) walletPassword:password limit:amount currency:currency counterparty:counterparty showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self presentAlertWithTitle:NSLocalizedStringFromTable(@"授信成功", @"guojihua", nil) message:@"" dismissAfterDelay:1.5 completion:nil];
-        [self requestTrustList];
+        [self presentAlertWithTitle:NSLocalizedStringFromTable(@"授信成功", @"guojihua", nil) message:@"" dismissAfterDelay:1.5 completion:^{
+                   [self requestTrustList];
+        }];
+
     } reLogin:^{
         [GlobalMethod loginOutAction];
     } warn:^(NSString *content) {
@@ -85,8 +87,9 @@
 
 -(void)requestCancleTrustActionWithPassword:(NSString *)password currency:(NSString *)currency counterparty:(NSString *)counterparty{
     [HTTPRequestManager cancelTrustlineWithWalletPassword:password currency:currency counterparty:counterparty showProgress:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self presentAlertWithTitle:NSLocalizedStringFromTable(@"取消成功", @"guojihua", nil) message:@"" dismissAfterDelay:1.5 completion:nil];
-        [self requestTrustList];
+        [self presentAlertWithTitle:NSLocalizedStringFromTable(@"取消成功", @"guojihua", nil) message:@"" dismissAfterDelay:1.5 completion:^{
+            [self requestTrustList];
+        }];
     } reLogin:^{
         [GlobalMethod loginOutAction];
     } warn:^(NSString *content) {

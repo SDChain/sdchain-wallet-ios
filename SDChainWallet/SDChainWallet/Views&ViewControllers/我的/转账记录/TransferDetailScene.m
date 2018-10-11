@@ -82,23 +82,15 @@
         NSDictionary *paymentDict = responseObject[@"payment"];
         self.string1 = paymentDict[@"source_account"];
         self.string2 = paymentDict[@"destination_account"];
-        if([paymentDict[@"amount"][@"value"] isEqual:[NSNull null]]){
-            self.string3 = @"";
-        }else{
-            self.string3 = paymentDict[@"amount"][@"value"];
-        }
-        if([paymentDict[@"fee"] isEqual:[NSNull null]]){
-            self.string4 = @"";
-        }else{
-            self.string4 = paymentDict[@"fee"];
-        }
-
+        self.string3 = paymentDict[@"amount"][@"value"];
+        self.string4 = paymentDict[@"fee"];
 //        self.string5 = [GlobalMethod getTimeWithdate:paymentDict[@"date"]];
         self.string6 = paymentDict[@"hash"];
         self.string7 = paymentDict[@"ledger"];
         self.string8 = paymentDict[@"direction"];
         self.string9 = paymentDict[@"state"];
-        self.currency = paymentDict[@"currency"];
+        self.currency = paymentDict[@"amount"][@"currency"];
+
         if(paymentDict[@"memos"]){
             self.string10 = paymentDict[@"memos"][0][@"MemoData"];
         }else{
@@ -140,11 +132,21 @@
     }else if (indexPath.row == 2){
         NSString *title = NSLocalizedStringFromTable(@"金额", @"guojihua", nil);
         cell.titleLabel.text = title;
-        cell.detailLabel.text = [NSString stringWithFormat:@"%@ %@",self.string3,self.currency];
+        if(self.string3 && self.currency){
+            cell.detailLabel.text = [NSString stringWithFormat:@"%@ %@",self.string3,self.currency];
+        }
+        else{
+            cell.detailLabel.text = @"";
+        }
     }else if (indexPath.row == 3){
+        if(self.string4){
+            cell.detailLabel.text = [NSString stringWithFormat:@"%@ SDA",self.string4];
+        }else{
+            cell.detailLabel.text = @"";
+        }
         NSString *title = NSLocalizedStringFromTable(@"手续费", @"guojihua", nil);
         cell.titleLabel.text = title;
-        cell.detailLabel.text = [NSString stringWithFormat:@"%@ %@",self.string4,self.currency];
+
     }else if (indexPath.row == 4){
         NSString *title = NSLocalizedStringFromTable(@"交易时间", @"guojihua", nil);
         cell.titleLabel.text = title;

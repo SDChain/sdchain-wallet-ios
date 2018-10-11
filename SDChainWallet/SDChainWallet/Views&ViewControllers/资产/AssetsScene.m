@@ -81,6 +81,8 @@
     [super viewWillAppear:animated];
     if(self.shimLabel.hidden == NO){
         [self.tableView.mj_header beginRefreshing];
+    }else{
+        [self requestBalance];
     }
 }
 
@@ -282,7 +284,7 @@
 -(void)requestBalanceCricle{
             NSString *title = NSLocalizedStringFromTable(@"激活中", @"guojihua", nil);
     self.shimLabel.text = title;
-    [HTTPRequestManager getBalanceWithAccount:self.currentWallet.account userId:SYSTEM_GET_(USER_ID) appToken:SYSTEM_GET_(APPTOKEN) showProgress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HTTPRequestManager getBalanceWithAccount:self.currentWallet.account userId:SYSTEM_GET_(USER_ID) appToken:SYSTEM_GET_(APPTOKEN) showProgress:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         self.isActive = YES;
         self.shimLabel.hidden = YES;
         NSArray *responseArr = responseObject[@"balances"];
@@ -340,7 +342,7 @@
 
 //第一次请求钱包列表
 -(void)requestWalletsListFirst{
-    [HTTPRequestManager paymentwalletListWithUserId:SYSTEM_GET_(USER_ID) showProgress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HTTPRequestManager paymentwalletListWithUserId:SYSTEM_GET_(USER_ID) showProgress:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *wallets = responseObject[@"walletList"];
         [[JKDBHelper shareInstance] changeDBWithDirectoryName:WALLETSTABLE];
@@ -369,7 +371,7 @@
 
 //请求钱包列表
 -(void)requestWalletsListWithAcount:(NSString *)account{
-    [HTTPRequestManager paymentwalletListWithUserId:SYSTEM_GET_(USER_ID) showProgress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HTTPRequestManager paymentwalletListWithUserId:SYSTEM_GET_(USER_ID) showProgress:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *wallets = responseObject[@"walletList"];
         [[JKDBHelper shareInstance] changeDBWithDirectoryName:WALLETSTABLE];

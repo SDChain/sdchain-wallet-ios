@@ -52,10 +52,10 @@
 
 #pragma mark - tabbar delegate
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    if(![item.title isEqualToString:NSLocalizedStringFromTable(@"资产", @"guojihua", nil)]){
+
         NSNotification *notification = [NSNotification notificationWithName:@"qingkong" object:nil];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
-    }
+
 
 }
 

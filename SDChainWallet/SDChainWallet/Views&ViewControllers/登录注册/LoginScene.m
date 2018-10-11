@@ -261,7 +261,6 @@
         self.passwordTextField.secureTextEntry = YES;
         [self.eyeButton setImage:[UIImage imageNamed:@"login_close"] forState:UIControlStateNormal];
     }
-
 }
 
 //切换登录方式
