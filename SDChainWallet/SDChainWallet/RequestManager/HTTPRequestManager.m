@@ -99,7 +99,7 @@ DEF_SINGLETON(HTTPRequestManager)
 +(void)checkVersionShowProgress:(BOOL)showProgress success:(void(^)(NSURLSessionDataTask * task, id responseObject))success warn:(void(^)(NSString * content))warn error:(void(^)(NSString * content))error failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure{
     HTTPRequestManager *manager = [HTTPRequestManager sharedInstance];
     NSString *urlStr = [BASE_URL_NORMAL stringByAppendingString:@"version/checkVersion"];
-    NSDictionary *parameter = @{@"versionCode":@"7",
+    NSDictionary *parameter = @{@"versionCode":@"8",
                                 @"type":@"0"
                                 };
     if(showProgress){
