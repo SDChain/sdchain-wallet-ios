@@ -13,12 +13,14 @@
 #import "TransferAccountsScene.h"
 #import "MineScene.h"
 #import "BussinessScene.h"
+#import "QuotesScene.h"
 
 @interface TabBarController ()<UINavigationControllerDelegate, UITabBarControllerDelegate>
 
 @property (nonatomic, strong) BaseNavigationController * assetsNavigationController;              // 资产
 @property (nonatomic, strong) BaseNavigationController * transferAccountsNavigationController;    // 转账
 @property (nonatomic, strong) BaseNavigationController * businessNavi;                           // 交易
+@property (nonatomic, strong) BaseNavigationController * quotesNavi;                              // 行情
 @property (nonatomic, strong) BaseNavigationController * personalNavigationController;            // 个人中心
 
 
@@ -45,6 +47,7 @@
     [self setViewControllers:@[self.assetsNavigationController,
                                self.transferAccountsNavigationController,
 //                               self.businessNavi,
+                               self.quotesNavi,
                                self.personalNavigationController]];
 }
 
@@ -118,6 +121,26 @@
         _businessNavi.tabBarItem.selectedImage = [[UIImage imageNamed:@"business_babbar_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return _businessNavi;
+}
+
+- (BaseNavigationController *)quotesNavi {
+    if (!_quotesNavi) {
+        QuotesScene * scene = [[QuotesScene alloc] init];
+        _quotesNavi = [[BaseNavigationController alloc] initWithRootViewController:scene];
+        
+        _quotesNavi.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -2);
+        NSDictionary * normalDict = @{NSFontAttributeName:[UIFont systemFontOfSize:12],
+                                      NSForegroundColorAttributeName:[UIColor darkGrayColor]};
+        NSDictionary * selectDict = @{NSFontAttributeName:[UIFont systemFontOfSize:12],
+                                      NSForegroundColorAttributeName:NAVIBAR_COLOR};
+        [_quotesNavi.tabBarItem setTitleTextAttributes:normalDict forState:UIControlStateNormal];
+        [_quotesNavi.tabBarItem setTitleTextAttributes:selectDict forState:UIControlStateSelected];
+        NSString *title = NSLocalizedStringFromTable(@"行情_tab", @"guojihua", nil);
+        _quotesNavi.tabBarItem.title = title;
+        _quotesNavi.tabBarItem.image = [[UIImage imageNamed:@"tab_quotes"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _quotesNavi.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_quotes_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+    return _quotesNavi;
 }
 
 - (BaseNavigationController *)personalNavigationController {
