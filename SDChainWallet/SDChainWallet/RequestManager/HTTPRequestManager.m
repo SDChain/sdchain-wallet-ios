@@ -2377,6 +2377,52 @@ NSString *languageType = [GlobalMethod getCurrentLanguage];
     }];
 }
 
+#pragma mark - 行情
+//行情
+-(void)getMarketInfoShowProgress:(BOOL)showProgress success:(void(^)(NSURLSessionDataTask * task, id responseObject))success reLogin:(void(^)(void))reLogin warn:(void(^)(NSString * content))warn error:(void(^)(NSString * content))error failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure{
+    HTTPRequestManager *manager = [HTTPRequestManager sharedInstance];
+    NSString *urlStr = [BASE_URL_NORMAL stringByAppendingString:@"market/getMarketInfo"];
+    NSString *languageType = [GlobalMethod getCurrentLanguage];
+    NSDictionary *parameter = @{
+                                @"languageType":languageType
+                                };
+    if(showProgress){
+        [manager showProgressHUD];
+    }
+    [manager.httpSessionManager GET:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (showProgress) {
+            [manager hideProgressHUD];
+        }
+        [manager logWithTask:task responseObject:responseObject];
+        NSString *statusStr = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if([statusStr isEqualToString:@"S00001"]){
+            if(success){
+                success(task,responseObject[@"data"]);
+            }
+        }
+        else if ([statusStr isEqualToString:@"E00002"]){
+            if(reLogin){
+                reLogin();
+            }
+        }
+        else{
+            if(warn){
+                warn(responseObject[@"message"]);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (showProgress) {
+            [manager hideProgressHUD];
+        }
+        [manager logWithTask:task error:error];
+        if (failure) {
+            failure(task, error);
+        } else if (manager.delegate && [manager.delegate respondsToSelector:@selector(httpRequestManagerDidRequestFailureWithError:)]) {
+            [manager.delegate httpRequestManagerDidRequestFailureWithError:error];
+        }
+    }];
+    
+}
 
 
 + (void)getAppDataSuccess:(void(^)(NSURLSessionDataTask * task, id responseObject))success failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure{

@@ -37,7 +37,6 @@ AS_SINGLETON(HTTPRequestManager)
 - (void)showProgressHUD;
 - (void)hideProgressHUD;
 
-
 + (void)getAppDataSuccess:(void(^)(NSURLSessionDataTask * task, id responseObject))success failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure;
 
 
@@ -185,7 +184,9 @@ AS_SINGLETON(HTTPRequestManager)
 //获取历史挂单列表
 +(void)getHisExchangeListsWithUserAccountId:(NSString *)userAccountId page:(NSNumber *)page showProgress:(BOOL)showProgress success:(void(^)(NSURLSessionDataTask * task, id responseObject))success reLogin:(void(^)(void))reLogin warn:(void(^)(NSString * content))warn error:(void(^)(NSString * content))error failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure;
 
-
+#pragma mark - 行情
+//行情
+-(void)getMarketInfoShowProgress:(BOOL)showProgress success:(void(^)(NSURLSessionDataTask * task, id responseObject))success reLogin:(void(^)(void))reLogin warn:(void(^)(NSString * content))warn error:(void(^)(NSString * content))error failure:(void(^)(NSURLSessionDataTask * task, NSError * error))failure;
 
 #pragma mark - 会员
 //会员图片上传
