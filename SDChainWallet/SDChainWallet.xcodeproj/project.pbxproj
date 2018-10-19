@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C3C83202098AC7BD0B98F78 /* libPods-SDChainWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C29B20C261618AE724DBCD /* libPods-SDChainWallet.a */; };
 		5C07645E21227DEC0011A3A9 /* TransferSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07645A21227DEB0011A3A9 /* TransferSelectScene.m */; };
 		5C07645F21227DEC0011A3A9 /* CurrenciesKindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C07645B21227DEB0011A3A9 /* CurrenciesKindCell.xib */; };
 		5C07646021227DEC0011A3A9 /* CurrenciesKindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07645C21227DEC0011A3A9 /* CurrenciesKindCell.m */; };
@@ -239,6 +238,7 @@
 		5CF1B22320848D3500313F94 /* UserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1B22220848D3500313F94 /* UserCenter.m */; };
 		5CF1B22620848D6100313F94 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1B22520848D6100313F94 /* UserModel.m */; };
 		5CF1B22D2084A69600313F94 /* YQLightLab.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1B22B2084A69600313F94 /* YQLightLab.m */; };
+		78D27554D865490C581C213A /* Pods_SDChainWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A43A16CBC2B26ED6D5E666 /* Pods_SDChainWallet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +259,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16A43A16CBC2B26ED6D5E666 /* Pods_SDChainWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDChainWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C07645921227DEB0011A3A9 /* TransferSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferSelectScene.h; sourceTree = "<group>"; };
 		5C07645A21227DEB0011A3A9 /* TransferSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferSelectScene.m; sourceTree = "<group>"; };
 		5C07645B21227DEB0011A3A9 /* CurrenciesKindCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrenciesKindCell.xib; sourceTree = "<group>"; };
@@ -695,7 +696,6 @@
 		6EEF3A459A707D8427144016 /* Pods-SDChainWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDChainWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDChainWallet/Pods-SDChainWallet.release.xcconfig"; sourceTree = "<group>"; };
 		9831868CC7BA10CEF2426A45 /* Pods-SDChainWallet.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDChainWallet.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-SDChainWallet/Pods-SDChainWallet.adhoc.xcconfig"; sourceTree = "<group>"; };
 		DBDFEA034D5280518C2AC6FF /* Pods-SDChainWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDChainWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDChainWallet/Pods-SDChainWallet.debug.xcconfig"; sourceTree = "<group>"; };
-		E7C29B20C261618AE724DBCD /* libPods-SDChainWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SDChainWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -703,7 +703,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C3C83202098AC7BD0B98F78 /* libPods-SDChainWallet.a in Frameworks */,
+				78D27554D865490C581C213A /* Pods_SDChainWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1721,7 +1721,7 @@
 		B20A287D2DF5F5A723359625 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E7C29B20C261618AE724DBCD /* libPods-SDChainWallet.a */,
+				16A43A16CBC2B26ED6D5E666 /* Pods_SDChainWallet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1960,9 +1960,34 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SDChainWallet/Pods-SDChainWallet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
+				"${BUILT_PRODUCTS_DIR}/LBXScan/LBXScan.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveViewModel/ReactiveViewModel.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/ZBarSDK/ZBarSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBXScan.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveViewModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZBarSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

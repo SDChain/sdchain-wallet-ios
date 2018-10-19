@@ -10,10 +10,10 @@
 #import "HTTPRequestManager.h"
 #import "Masonry.h"
 #import "ScanScene.h"
-#import <LBXScanViewStyle.h>
+#import "LBXScanViewStyle.h"
 #import "StyleDIY.h"
 #import "Global.h"
-#import <LBXScanViewController.h>
+#import "LBXScanViewController.h"
 
 @interface FixWalletForgetSecretScene ()<UITextFieldDelegate>
 

@@ -6,7 +6,7 @@
 //  Copyright © 2017年 HuiTong. All rights reserved.
 //
 
-#import <LBXScanViewController.h>
+#import "LBXScanViewController.h"
 
 typedef NS_ENUM(NSInteger,SceneType) {
     typeAssetType,

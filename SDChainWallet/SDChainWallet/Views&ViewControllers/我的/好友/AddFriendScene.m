@@ -8,10 +8,10 @@
 
 #import "AddFriendScene.h"
 #import "ScanScene.h"
-#import <LBXScanViewStyle.h>
+#import "LBXScanViewStyle.h"
 #import "StyleDIY.h"
 #import "Global.h"
-#import <LBXScanViewController.h>
+#import "LBXScanViewController.h"
 #import "HTTPRequestManager.h"
 #import "FriendDetailScene.h"
 
