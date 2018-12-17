@@ -13,7 +13,6 @@
 		5C07646021227DEC0011A3A9 /* CurrenciesKindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C07645C21227DEC0011A3A9 /* CurrenciesKindCell.m */; };
 		5C0B73F9206A46820000C399 /* GlobalMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B73F8206A46820000C399 /* GlobalMethod.m */; };
 		5C0D07372089E07D00137C51 /* CertificationScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D07362089E07D00137C51 /* CertificationScene.m */; };
-		5C16EA222176DA0B00E2E5C7 /* QuotesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C16EA212176DA0B00E2E5C7 /* QuotesScene.m */; };
 		5C21BC6E20EF13330023808C /* TradingBuyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C21BC6D20EF13330023808C /* TradingBuyScene.m */; };
 		5C21BC7120EF13490023808C /* TradingSellScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C21BC7020EF13490023808C /* TradingSellScene.m */; };
 		5C21BC7420EF13690023808C /* TradingCurrentScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C21BC7320EF13690023808C /* TradingCurrentScene.m */; };
@@ -268,8 +267,6 @@
 		5C0B73F8206A46820000C399 /* GlobalMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalMethod.m; sourceTree = "<group>"; };
 		5C0D07352089E07D00137C51 /* CertificationScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificationScene.h; sourceTree = "<group>"; };
 		5C0D07362089E07D00137C51 /* CertificationScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertificationScene.m; sourceTree = "<group>"; };
-		5C16EA202176DA0B00E2E5C7 /* QuotesScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuotesScene.h; sourceTree = "<group>"; };
-		5C16EA212176DA0B00E2E5C7 /* QuotesScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuotesScene.m; sourceTree = "<group>"; };
 		5C21BC6C20EF13330023808C /* TradingBuyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradingBuyScene.h; sourceTree = "<group>"; };
 		5C21BC6D20EF13330023808C /* TradingBuyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TradingBuyScene.m; sourceTree = "<group>"; };
 		5C21BC6F20EF13490023808C /* TradingSellScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradingSellScene.h; sourceTree = "<group>"; };
@@ -743,15 +740,6 @@
 			path = Globals;
 			sourceTree = "<group>";
 		};
-		5C16EA1F2176D99A00E2E5C7 /* Quotes */ = {
-			isa = PBXGroup;
-			children = (
-				5C16EA202176DA0B00E2E5C7 /* QuotesScene.h */,
-				5C16EA212176DA0B00E2E5C7 /* QuotesScene.m */,
-			);
-			path = Quotes;
-			sourceTree = "<group>";
-		};
 		5C21BC5F20EF10990023808C /* 买入 */ = {
 			isa = PBXGroup;
 			children = (
@@ -834,7 +822,6 @@
 				5C0B73F6206A46430000C399 /* Globals */,
 				5C3CD53F205A0938000377DB /* Supporting Files */,
 				5C3CD523205A0501000377DB /* Categories */,
-				5C30CEFC20591F7E003D0D6C /* NetWorks */,
 				5C30CEFB20591F53003D0D6C /* Models */,
 				5C30CEFA20591F24003D0D6C /* Views&ViewControllers */,
 				5C30CEF820591ED5003D0D6C /* Base */,
@@ -886,7 +873,6 @@
 		5C30CEFA20591F24003D0D6C /* Views&ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C16EA1F2176D99A00E2E5C7 /* Quotes */,
 				5CE4277A20E6199A004CF6D5 /* 交易 */,
 				5C5F965A207DD12A00B4F4EE /* 我的 */,
 				5CD7C51E20766EF900EF2953 /* PublicViews */,
@@ -911,13 +897,6 @@
 				5C58406F21080BE100F0D3C9 /* TradingCurrencyModel.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		5C30CEFC20591F7E003D0D6C /* NetWorks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetWorks;
 			sourceTree = "<group>";
 		};
 		5C30CEFD20591FD0003D0D6C /* Libraries */ = {
@@ -1979,7 +1958,6 @@
 				5CA144692087216200F718ED /* PinyinHelper.m in Sources */,
 				5C4A42E4205F8BE90037FBB3 /* PopSideMenuView.m in Sources */,
 				5CA144612087216200F718ED /* PinyinFormatter.m in Sources */,
-				5C16EA222176DA0B00E2E5C7 /* QuotesScene.m in Sources */,
 				5C21BC6E20EF13330023808C /* TradingBuyScene.m in Sources */,
 				5C07646021227DEC0011A3A9 /* CurrenciesKindCell.m in Sources */,
 				5CE4277D20E619DA004CF6D5 /* BussinessScene.m in Sources */,
