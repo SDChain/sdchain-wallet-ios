@@ -11,8 +11,8 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import "GTMBase64.h"
 
-static NSString *const PSW_AES_KEY = @"SDChainAPPValid6";
-static NSString *const AES_IV_PARAMETER = @"0102030405060708";
+static NSString *const PSW_AES_KEY = @"";
+static NSString *const AES_IV_PARAMETER = @"";
 
 @implementation NSString (AES)
 
